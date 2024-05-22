@@ -1,10 +1,11 @@
 import os
+import platform
+import sysconfig
 from requests import get
 from json import loads
 
 
 # Перезагрузить компьютер
-
 def rebootPC():
     os.system("shutdown /r /t 1")
 
@@ -16,7 +17,6 @@ def logoutPC():
 
 
 # Внешний IP
-
 def get_ip():
     ip = get("https://api64.ipify.org?format=json").text
     ip = loads(ip)["ip"]
@@ -70,3 +70,40 @@ def systeminfo():
 # Имя ПК
 def get_hostname():
     os.system("hostname")
+
+
+#
+
+def kill_process (id):
+	os.system("taskkill /IM " + id + " -F")
+
+
+#
+
+def start_process (id):
+	os.startfile(r'' + id)
+
+
+#
+
+def cmd_process (id):
+	os.system(id)
+
+
+#
+
+def get_os_name ():
+    name = platform.system()
+    version = platform.version()
+    type = os.name()
+    arch = sysconfig.get_platform()
+    cores = os.cpu_count()
+
+    return name, version, type, arch
+
+#
+
+def get_os_environ ():
+	return os.environ
+
+
